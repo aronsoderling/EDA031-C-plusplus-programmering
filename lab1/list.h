@@ -46,6 +46,7 @@ private:
 	};
 	
 	Node* first; // pointer to the first node
+	int list_size;
 };
 
 #endif
