@@ -6,8 +6,7 @@
  */
 class Decode {
 public:
-	/* For any character c, decode(encode(c)) == c */ 
-	static unsigned char decode(unsigned char c);
+
 private:
 	
 };

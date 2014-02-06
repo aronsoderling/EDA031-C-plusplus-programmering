@@ -2,12 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "encode.h"
-
-/* For any character c, encode(c) is a character different from c */
-unsigned char Encode::encode(unsigned char c){
-	return c+1;
-}
+#include "coding.h"
 
 int main(int argc, char* argv[]) {
 	if(argc != 2){
@@ -25,7 +20,7 @@ int main(int argc, char* argv[]) {
 
 	char c = input.get();;
 	while(input.good()){
-		output << Encode::encode(c);
+		output << Coding::encode(c);
 		c = input.get();
 	}
 	input.close();

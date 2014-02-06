@@ -22,10 +22,10 @@ PROGS = ltest hello encode decode
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
-ltest: ltest.o list.o
+ltest: ltest.o liblab1.a
 hello: hello.o
-encode: encode.o
-decode: decode.o
+encode: encode.o liblab1.a
+decode: decode.o liblab1.a
 
 # Phony targets
 .PHONY: all clean

@@ -5,6 +5,15 @@ List::List() : list_size(0) {
 }
 
 List::~List() {
+  Node* n = first;
+  int i = 0;
+  int prev_size = size();
+  while(i < prev_size){
+      Node* del = n;
+      n = n->next;
+      delete del;
+      ++i;
+  }
 }
 
 bool List::exists(int d) const {
@@ -53,11 +62,14 @@ void List::remove(int d, DeleteFlag df) {
 			}else{
 				first = nullptr;
 			}
-			//delete n;
+			Node* del = n;
+			n = n->next;
+			delete del;
 			--list_size;
+		}else{
+		  p = n;
+		  n = n->next;
 		}
-		p = n;
-		n = n->next;
 		++i;
 	}
 }

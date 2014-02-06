@@ -6,8 +6,7 @@
  */
 class Encode {
 public:
-	/* For any character c, encode(c) is a character different from c */
-	static unsigned char encode(unsigned char c);
+
 private:
 	
 };
