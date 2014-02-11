@@ -1,14 +1,13 @@
 #include <iostream>
 #include "list.h"
 
-List::List() : list_size(0) {
+List::List() : first(nullptr), list_size(0) {
 }
 
 List::~List() {
   Node* n = first;
   int i = 0;
-  int prev_size = size();
-  while(i < prev_size){
+  while(n != nullptr){
       Node* del = n;
       n = n->next;
       delete del;
@@ -19,7 +18,7 @@ List::~List() {
 bool List::exists(int d) const {
 	int i=0;
 	Node* n = first;
-	while(i<size()){
+	while(n != nullptr){
 		if(d == n->value){
 			return true;
 		}

@@ -17,15 +17,13 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = ltest hello encode decode
+PROGS = create_words spell
 
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
-ltest: ltest.o list.o
-hello: hello.o
-encode: encode.o coding.o
-decode: decode.o coding.o
+create_words: create_words.o
+spell: spell.o dictionary.o 
 
 # Phony targets
 .PHONY: all clean

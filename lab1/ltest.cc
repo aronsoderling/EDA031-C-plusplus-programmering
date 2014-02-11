@@ -33,11 +33,11 @@ int main() {
 	list.print();
 	cout << endl;
 	cout << "Size: " << list.size() << endl;
-	//list.remove(5, List::DeleteFlag::LESS);
-	//cout << "After remove < 5: ";
-	//list.print();
-	//cout << endl;
-	//cout << "Size: " << list.size() << endl;
+	list.remove(5, List::DeleteFlag::LESS);
+	cout << "After remove < 5: ";
+	list.print();
+	cout << endl;
+	cout << "Size: " << list.size() << endl;
 
 	cout << "Is empty: " << list.empty() << endl;
 
