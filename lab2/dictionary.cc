@@ -61,7 +61,12 @@ vector<string> Dictionary::get_suggestions(const string& word) {
 	for(Word w : s1){
 		suggestions.push_back( w.get_word() );
 	}
-	return suggestions;
+
+	vector<string> ranked = rank_suggestions(word, s1);
+
+	trim_suggestions(ranked);
+
+	return ranked;
 }
 
 void Dictionary::add_trigram_suggestions(const string& str, vector<Word>& suggestions){
@@ -79,4 +84,53 @@ void Dictionary::add_trigram_suggestions(const string& str, vector<Word>& sugges
 			suggestions.push_back(w);
 		}
 	}
+}
+
+vector<string> Dictionary::rank_suggestions(const string& str, vector<Word>& suggestions){
+	vector<pair<int, string>> rank;
+	for(Word w : suggestions){
+		int dist = comp_distance(str, w.get_word());
+		rank.push_back(make_pair(dist, w.get_word()));
+	}
+	sort(rank.begin(), rank.end());
+	int size = rank.size();
+	vector<string> result;
+	for(int i=0; i<size; i++){
+		result.push_back(rank[i].second);
+	}
+	return result;
+}
+
+void Dictionary::trim_suggestions(vector<string>& suggestions){
+	suggestions.resize(5);
+}
+
+int Dictionary::comp_distance(const string& s1, const string& s2){
+	int d[26][26];
+	int size1 = s1.size(); 
+	int size2 = s2.size();
+	
+	d[0][0] = 0;
+
+	for(int i=1; i<=size1; i++){
+		d[i][0] = i;
+	}
+	for(int j=1; j<=size2; j++){
+		d[0][j] = j;
+	}
+	for(int i=1; i<=size1; i++){
+		for(int j=1; j<=size2; j++){
+			int m1;
+			if(s1.at(i-1) == s2.at(j-1)){
+				m1 = d[i-1][j-1];
+			}else{
+				m1 = d[i-1][j-1] + 1;
+			}
+			m1 = min(m1, d[i-1][j] + 1);
+			m1 = min(m1, d[i][j-1] + 1);
+			
+			d[i][j] = m1;
+		}
+	}
+	return d[size1][size2];
 }
