@@ -6,13 +6,18 @@
 #include <unordered_set>
 #include "word.h"
 
+
+
 class Dictionary {
 public:
 	Dictionary();
 	bool contains(const std::string& word) const;
-	std::vector<std::string> get_suggestions(const std::string& word) const;
+	std::vector<std::string> get_suggestions(const std::string& word);
+	void add_trigram_suggestions(const std::string& str, std::vector<Word>& suggestions);
 private:
-	std::unordered_set<Word> set;
+	std::unordered_set<Word, Hash, Eq> set;
+	std::vector< std::vector<Word> > words;
 };
+
 
 #endif
