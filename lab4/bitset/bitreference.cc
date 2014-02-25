@@ -2,13 +2,19 @@
 #include "bitset.h"
 
 BitReference& BitReference::operator=(bool b) {
+	if (b) {
+		p_bits |= 1L << pos;
+	} else {
+		p_bits &= ~ (1L << pos);
+	}
 	return *this;
 }
 
 BitReference& BitReference::operator=(const BitReference& rhs) {
+	*this = rhs ? true : false;
 	return *this;
 }
 
 BitReference::operator bool() const {
-	return true;
+	return ((p_bits & (1L << pos)) > 0);
 }

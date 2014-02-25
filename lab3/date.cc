@@ -42,24 +42,29 @@ void Date::next() {
 }
 
 istream& operator>>(istream& is, Date& d) {
-	string str;
-	is >> str;
-	
-	istringstream iss(str);
+	int dyear;
+	int dmonth;
+	int dday;
 
-	string token;
+	char divider;
 
-	getline(iss, token, '-');
-	int dyear = stoi(token);
-	
-	getline(iss, token, '-');
-	int dmonth = stoi(token);
+	is >> dyear;
+	is.get(divider);
+	if(divider != '-'){
+		is.setstate(ios::failbit);
+	}
 
-	getline(iss, token, '-');
-	int dday = stoi(token);
+	is >> dmonth;
+	is.get(divider);
+	if(divider != '-'){
+		is.setstate(ios::failbit);
+	}
+
+	is >> dday;
 
 	if(dmonth < 1 || dmonth > 12 || dday < 1 || dday > Date::daysPerMonth[ dmonth ]){
-		cerr << "Invalid format" << endl;
+		//cerr << "Invalid format" << endl;
+		is.setstate(ios::failbit);
 	}else{
 		d.year = dyear;
 		d.month = dmonth;

@@ -6,7 +6,7 @@
 using namespace std;
 
 template<class T>
-string toString(T& input){
+string toString(const T& input){
 	ostringstream oss;
 	oss << input;
 	return oss.str();
@@ -34,7 +34,7 @@ int main(){
 	Date date;
 
 	try {
-		i = string_cast<int>("123");
+		i = string_cast<int>("a123");
 		d2 = string_cast<double>("12.34");
 		date = string_cast<Date>("2013-01-10");
 	} catch (invalid_argument& e){

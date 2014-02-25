@@ -58,7 +58,7 @@ int HNS::myHash(const HostName& name) const{
 	int hash = 0;
 	int i = 0;
 	for(auto it = str.begin(); it != str.end(); ++it) {
-		hash += *it;
+		hash += *it + i;
 		++i;
    	}
    	//cout << name << " gives hash " << hash << endl;
